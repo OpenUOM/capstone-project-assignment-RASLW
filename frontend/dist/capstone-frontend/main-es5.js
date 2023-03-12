@@ -1571,7 +1571,7 @@
               this.getStudentData();
             } else {
               var b = this.studentData.filter(function (student) {
-                if (student[0].name.toLowerCase().indexOf(value) > -1) {
+                if (student[0].name.toLowerCase().indexOf(value.toLowerCase()) > -1) {
                   foundItems.push(student);
                 }
               });
@@ -1940,7 +1940,7 @@
               this.getTeacherData();
             } else {
               var b = this.teacherData.filter(function (teacher) {
-                if (teacher[0].name.toLowerCase().indexOf(value) > -1) {
+                if (teacher.name.toLowerCase().indexOf(value.toLowerCase()) > -1) {
                   foundItems.push(teacher);
                 }
               });
