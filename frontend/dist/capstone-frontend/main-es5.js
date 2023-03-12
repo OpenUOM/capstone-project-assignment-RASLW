@@ -1940,7 +1940,7 @@
               this.getTeacherData();
             } else {
               var b = this.teacherData.filter(function (teacher) {
-                if (teacher[0].name.toLowerCase().indexOf(value) > -1) {
+                if (teacher[0].name.toLowerCase().indexOf(value.toLowerCase()) > -1) {
                   foundItems.push(teacher);
                 }
               });

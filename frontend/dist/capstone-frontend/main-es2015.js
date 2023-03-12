@@ -945,7 +945,7 @@ class TeacherTableComponent {
         }
         else {
             let b = this.teacherData.filter((teacher) => {
-                if (teacher[0].name.toLowerCase().indexOf(value) > -1) {
+                if (teacher[0].name.toLowerCase().indexOf(value.toLowerCase()) > -1) {
                     foundItems.push(teacher);
                 }
             });
