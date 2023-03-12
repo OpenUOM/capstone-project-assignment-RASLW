@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, NavigationExtras } from '@angular/router';
 import { faTrash, faPlus, faPenSquare } from '@fortawesome/free-solid-svg-icons';
 import { AppServiceService } from '../../app-service.service';
+
 @Component({
   selector: 'app-teacher-table',
   templateUrl: './teacher-table.component.html',
@@ -34,7 +35,7 @@ export class TeacherTableComponent implements OnInit {
     this.router.navigate(['editTeacher'], navigationExtras)
   }
 
-  initializeDB(){
+  initializeDB() {
     this.service.initializeDB().subscribe((response) => {
       console.log('DB is Initialized')
     }, (error) => {
@@ -61,19 +62,22 @@ export class TeacherTableComponent implements OnInit {
   }
 
   search(value) {
-  let foundItems = [];
-  if (value.length <= 0) {
-    this.getTeacherData();
-  } else {
-    let b = this.teacherData.filter((teacher) => {
-      if (teacher[0].name.toLowerCase().indexOf(value.toLowerCase()) > -1) {
-        foundItems.push(teacher)
-      }
-    });
-    this.teacherData = foundItems;
+    if (value.length <= 0) {
+      this.getTeacherData();
+    } else {
+      this.service.getTeacherData().subscribe((response) => {
+        const foundItems = Object.keys(response).map((key) => [response[key]]).filter((teacher) => {
+          if (teacher[0].name.toLowerCase().indexOf(value.toLowerCase()) > -1) {
+            return true;
+          }
+        });
+        this.teacherData = foundItems;
+      }, (error) => {
+        console.log('ERROR - ', error)
+      })
+    }
   }
-  }
-  
+
   deleteTeacher(itemid) {
     const test = {
       id: itemid

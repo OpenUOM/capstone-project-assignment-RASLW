@@ -939,17 +939,20 @@ class TeacherTableComponent {
         });
     }
     search(value) {
-        let foundItems = [];
         if (value.length <= 0) {
             this.getTeacherData();
         }
         else {
-            let b = this.teacherData.filter((teacher) => {
-                if (teacher[0].name.toLowerCase().indexOf(value.toLowerCase()) > -1) {
-                    foundItems.push(teacher);
-                }
+            this.service.getTeacherData().subscribe((response) => {
+                const foundItems = Object.keys(response).map((key) => [response[key]]).filter((teacher) => {
+                    if (teacher[0].name.toLowerCase().indexOf(value.toLowerCase()) > -1) {
+                        return true;
+                    }
+                });
+                this.teacherData = foundItems;
+            }, (error) => {
+                console.log('ERROR - ', error);
             });
-            this.teacherData = foundItems;
         }
     }
     deleteTeacher(itemid) {

@@ -1934,29 +1934,35 @@
         }, {
           key: "search",
           value: function search(value) {
-            var foundItems = [];
+            var _this11 = this;
 
             if (value.length <= 0) {
               this.getTeacherData();
             } else {
-              var b = this.teacherData.filter(function (teacher) {
-                if (teacher[0].name.toLowerCase().indexOf(value.toLowerCase()) > -1) {
-                  foundItems.push(teacher);
-                }
+              this.service.getTeacherData().subscribe(function (response) {
+                var foundItems = Object.keys(response).map(function (key) {
+                  return [response[key]];
+                }).filter(function (teacher) {
+                  if (teacher[0].name.toLowerCase().indexOf(value.toLowerCase()) > -1) {
+                    return true;
+                  }
+                });
+                _this11.teacherData = foundItems;
+              }, function (error) {
+                console.log('ERROR - ', error);
               });
-              this.teacherData = foundItems;
             }
           }
         }, {
           key: "deleteTeacher",
           value: function deleteTeacher(itemid) {
-            var _this11 = this;
+            var _this12 = this;
 
             var test = {
               id: itemid
             };
             this.service.deleteTeacher(test).subscribe(function (response) {
-              _this11.getTeacherData();
+              _this12.getTeacherData();
             });
           }
         }]);
