@@ -939,20 +939,17 @@ class TeacherTableComponent {
         });
     }
     search(value) {
+        let foundItems = [];
         if (value.length <= 0) {
             this.getTeacherData();
         }
         else {
-            this.service.getTeacherData().subscribe((response) => {
-                const foundItems = Object.keys(response).map((key) => [response[key]]).filter((teacher) => {
-                    if (teacher[0].name.toLowerCase().indexOf(value.toLowerCase()) > -1) {
-                        return true;
-                    }
-                });
-                this.teacherData = foundItems;
-            }, (error) => {
-                console.log('ERROR - ', error);
+            let b = this.teacherData.filter((teacher) => {
+                if (teacher[0].name.toLowerCase().indexOf(value) > -1) {
+                    foundItems.push(teacher);
+                }
             });
+            this.teacherData = foundItems;
         }
     }
     deleteTeacher(itemid) {
@@ -1077,7 +1074,7 @@ _angular_platform_browser__WEBPACK_IMPORTED_MODULE_3__["platformBrowser"]().boot
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! D:\capstone final\capstone-project-assignment-RASLW\frontend\src\main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! D:\Capstone Project Final Attempt\capstone-project-assignment-RASLW\frontend\src\main.ts */"./src/main.ts");
 
 
 /***/ })

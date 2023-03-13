@@ -72,8 +72,6 @@
           "options": {
             "browserTarget": "capstone-frontend:build",
             "proxyConfig": "./proxy.conf.json"
-            
-            
           },
           "configurations": {
             "production": {
@@ -137,6 +135,6 @@
   },
   "defaultProject": "capstone-frontend",
   "cli": {
-    "analytics": "f065880b-0c63-44a5-91df-d682c0cf8a7d"
+    "analytics": "aec4a6d7-9f4e-47f5-a87b-7a7f9e4548ad"
   }
 }

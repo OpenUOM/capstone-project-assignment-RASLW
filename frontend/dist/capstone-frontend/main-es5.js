@@ -1934,35 +1934,29 @@
         }, {
           key: "search",
           value: function search(value) {
-            var _this11 = this;
+            var foundItems = [];
 
             if (value.length <= 0) {
               this.getTeacherData();
             } else {
-              this.service.getTeacherData().subscribe(function (response) {
-                var foundItems = Object.keys(response).map(function (key) {
-                  return [response[key]];
-                }).filter(function (teacher) {
-                  if (teacher[0].name.toLowerCase().indexOf(value.toLowerCase()) > -1) {
-                    return true;
-                  }
-                });
-                _this11.teacherData = foundItems;
-              }, function (error) {
-                console.log('ERROR - ', error);
+              var b = this.teacherData.filter(function (teacher) {
+                if (teacher[0].name.toLowerCase().indexOf(value) > -1) {
+                  foundItems.push(teacher);
+                }
               });
+              this.teacherData = foundItems;
             }
           }
         }, {
           key: "deleteTeacher",
           value: function deleteTeacher(itemid) {
-            var _this12 = this;
+            var _this11 = this;
 
             var test = {
               id: itemid
             };
             this.service.deleteTeacher(test).subscribe(function (response) {
-              _this12.getTeacherData();
+              _this11.getTeacherData();
             });
           }
         }]);
@@ -2188,7 +2182,7 @@
     /***/
     function _(module, exports, __webpack_require__) {
       module.exports = __webpack_require__(
-      /*! D:\capstone final\capstone-project-assignment-RASLW\frontend\src\main.ts */
+      /*! D:\Capstone Project Final Attempt\capstone-project-assignment-RASLW\frontend\src\main.ts */
       "./src/main.ts");
       /***/
     }

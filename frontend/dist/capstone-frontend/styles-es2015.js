@@ -439,7 +439,7 @@ module.exports = content.locals || {};
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! D:\capstone final\capstone-project-assignment-RASLW\frontend\src\styles.css */"./src/styles.css");
+module.exports = __webpack_require__(/*! D:\Capstone Project Final Attempt\capstone-project-assignment-RASLW\frontend\src\styles.css */"./src/styles.css");
 
 
 /***/ })
